@@ -7,6 +7,7 @@ export const envalidate = () => {
     }),
     DB_URL: str(),
     REDIS_URL: str(),
+    API_URL: str(),
     // REDIS_PORT: port(),
     // REDIS_PASSWORD: str(),
   });

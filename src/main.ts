@@ -6,6 +6,7 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 import { AllExceptionsFilter } from './utils/http-exception.filter';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import 'dotenv/config';
 async function bootstrap() {
   envalidate();
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
