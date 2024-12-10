@@ -24,7 +24,7 @@ export class TasksService {
     console.log(after);
   }
   // Do check In
-  @Cron('12 7 * * 1-5')
+  @Cron('14 7 * * 1-5')
   async handleCheckIn() {
     this.logger.debug('Checking in');
     this.queueService.checkIn();
