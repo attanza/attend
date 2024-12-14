@@ -63,6 +63,8 @@ export class AttendanceService {
     if (users && users.length > 0) {
       for (const user of users) {
         const token = await getTokenProc(user.nik, decryptData(user.password));
+        console.log('Token for nik: ', user.nik, ' is: ', token);
+
         if (token && token !== 0) {
           return token;
         } else {
