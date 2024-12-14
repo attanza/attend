@@ -4,7 +4,6 @@ import { decryptData } from '../utils/encrypt';
 import { HolidaysService } from '../holidays/holidays.service';
 import moment from 'moment';
 
-import { randTime } from '../utils/randTime';
 import { checkInProc } from '../utils/checkInProc';
 import { checkOutProc } from '../utils/checkOutProc';
 import { getTokenProc } from '../utils/getTokenProc';
@@ -22,11 +21,8 @@ export class AttendanceService {
         const token = await getTokenProc(user.nik, decryptData(user.password));
         if (token && token !== 0) {
           const promises: any = [];
-          const timeoutSec = 1000 * 60 * randTime(2, 8);
-          setTimeout(async function () {
-            promises.push(checkInProc(token));
-            await Promise.all(promises);
-          }, timeoutSec);
+          promises.push(checkInProc(token));
+          await Promise.all(promises);
         } else {
           console.log('No further action for nik: ', user.nik);
         }
@@ -42,11 +38,8 @@ export class AttendanceService {
         const token = await getTokenProc(user.nik, decryptData(user.password));
         if (token && token !== 0) {
           const promises: any = [];
-          const timeoutSec = 1000 * 60 * randTime(2, 8);
-          setTimeout(async function () {
-            promises.push(checkOutProc(token));
-            await Promise.all(promises);
-          }, timeoutSec);
+          promises.push(checkOutProc(token));
+          await Promise.all(promises);
         } else {
           console.log('No further action for nik: ', user.nik);
         }
