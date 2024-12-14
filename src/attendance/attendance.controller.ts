@@ -1,4 +1,4 @@
-import { Controller, HttpCode, Post } from '@nestjs/common';
+import { Controller, Get, HttpCode, Post } from '@nestjs/common';
 import { QueuesService } from 'src/queues/queues.service';
 import { responseSuccess } from 'src/utils/response-parser';
 import { AttendanceService } from './attendance.service';
@@ -23,5 +23,10 @@ export class AttendanceController {
     await this.service.holidayCheck();
     this.queueService.checkOut();
     return responseSuccess('Check-out success', null);
+  }
+
+  @Get('get-token')
+  async getToken() {
+    return responseSuccess('Get Token', this.service.getToken());
   }
 }

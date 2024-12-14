@@ -3,6 +3,8 @@ import FormData from 'form-data';
 import 'dotenv/config';
 
 export const getTokenProc = async (code: string, password: string) => {
+  console.log({ code, password });
+
   const data = new FormData();
   data.append('data', `{"code":"${code}","password":"${password}"}`);
   const config = {
@@ -32,6 +34,7 @@ async function doGetToken(config: any, retries = 5, delay = 1000) {
     const resp = await axios(config).then((res) => res.data);
     return resp.guid ?? resp.data.token;
   } catch (error) {
+    console.log(error);
     if (retries > 0) {
       console.error(`get token error retrying:  ${error.message}`);
       await new Promise((resolve) => setTimeout(resolve, delay));

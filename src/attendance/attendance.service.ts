@@ -57,4 +57,20 @@ export class AttendanceService {
     }
     return false;
   }
+
+  async getToken() {
+    const users = await this.userService.find({ isActive: true });
+    if (users && users.length > 0) {
+      for (const user of users) {
+        const token = await getTokenProc(user.nik, decryptData(user.password));
+        if (token && token !== 0) {
+          return token;
+        } else {
+          console.log('No further action for nik: ', user.nik);
+        }
+      }
+    }
+
+    return 'No token found';
+  }
 }
